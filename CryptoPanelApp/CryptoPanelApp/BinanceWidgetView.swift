@@ -3,12 +3,47 @@ import WebKit
 
 /// SwiftUI обертка для WebView с виджетом Binance
 struct BinanceWidgetView: NSViewRepresentable {
-    func makeNSView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        webView.navigationDelegate = context.coordinator
+    @ObservedObject var settingsManager = SettingsManager.shared
+    
+    // Маппинг тикеров на CoinMarketCap ID
+    private let cmcIdMap: [String: String] = [
+        "BTC": "1",
+        "ETH": "1027",
+        "SOL": "5426",
+        "BNB": "1839",
+        "ADA": "2010",
+        "XRP": "52",
+        "DOGE": "5",
+        "DOT": "6636",
+        "MATIC": "3890",
+        "AVAX": "5805",
+        "LINK": "1975",
+        "UNI": "7083",
+        "LTC": "2",
+        "ATOM": "3794",
+        "ETC": "1321",
+        "XLM": "512",
+        "ALGO": "4030",
+        "VET": "3077",
+        "ICP": "8916",
+        "FIL": "2280"
+    ]
+    
+    private func getCMCIDs(for tickers: Set<String>) -> String {
+        let ids = tickers.compactMap { ticker -> String? in
+            return cmcIdMap[ticker.uppercased()]
+        }
+        // Если нет известных ID, используем BTC, ETH, SOL по умолчанию
+        if ids.isEmpty {
+            return "1,1027,5426"
+        }
+        return ids.joined(separator: ",")
+    }
+    
+    func getHTMLString(for tickers: Set<String>) -> String {
+        let cmcIds = getCMCIDs(for: tickers)
         
-        // HTML с виджетом Binance
-        let htmlString = """
+        return """
         <!DOCTYPE html>
         <html>
         <head>
@@ -67,7 +102,7 @@ struct BinanceWidgetView: NSViewRepresentable {
         <body>
             <script src="https://public.bnbstatic.com/unpkg/growth-widget/cryptoCurrencyWidget@0.0.22.min.js"></script>
             <div class="binance-widget-marquee" 
-                 data-cmc-ids="1,1027,5426" 
+                 data-cmc-ids="\(cmcIds)" 
                  data-theme="dark" 
                  data-transparent="true" 
                  data-locale="en" 
@@ -77,13 +112,26 @@ struct BinanceWidgetView: NSViewRepresentable {
         </body>
         </html>
         """
+    }
+    
+    func makeNSView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
         
+        // Загружаем виджет с текущими тикерами
+        let htmlString = getHTMLString(for: settingsManager.selectedTickers)
         webView.loadHTMLString(htmlString, baseURL: nil)
+        
+        // Настраиваем обновление каждые 15 секунд
+        context.coordinator.setupAutoRefresh(webView: webView, widgetView: self)
+        
         return webView
     }
     
     func updateNSView(_ nsView: WKWebView, context: Context) {
-        // Обновление не требуется
+        // Обновляем виджет при изменении тикеров
+        let htmlString = getHTMLString(for: settingsManager.selectedTickers)
+        nsView.loadHTMLString(htmlString, baseURL: nil)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -91,6 +139,33 @@ struct BinanceWidgetView: NSViewRepresentable {
     }
     
     class Coordinator: NSObject, WKNavigationDelegate {
+        private var refreshTimer: Timer?
+        private var getHTMLStringClosure: ((Set<String>) -> String)?
+        private var getSelectedTickersClosure: (() -> Set<String>)?
+        
+        func setupAutoRefresh(webView: WKWebView, widgetView: BinanceWidgetView) {
+            // Сохраняем замыкания для получения HTML и тикеров
+            getHTMLStringClosure = { tickers in
+                widgetView.getHTMLString(for: tickers)
+            }
+            getSelectedTickersClosure = {
+                widgetView.settingsManager.selectedTickers
+            }
+            
+            // Останавливаем предыдущий таймер если есть
+            refreshTimer?.invalidate()
+            
+            // Обновляем виджет каждые 15 секунд
+            refreshTimer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { [weak self, weak webView] _ in
+                guard let webView = webView,
+                      let getHTML = self?.getHTMLStringClosure,
+                      let getTickers = self?.getSelectedTickersClosure else { return }
+                let tickers = getTickers()
+                let htmlString = getHTML(tickers)
+                webView.loadHTMLString(htmlString, baseURL: nil)
+            }
+        }
+        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             // Виджет загружен - применяем стили для цветов
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -142,6 +217,10 @@ struct BinanceWidgetView: NSViewRepresentable {
                 """
                 webView.evaluateJavaScript(script, completionHandler: nil)
             }
+        }
+        
+        deinit {
+            refreshTimer?.invalidate()
         }
     }
 }
