@@ -18,7 +18,6 @@ CryptoPanel is a native macOS application that displays real-time cryptocurrency
 ### ✨ Key Features
 
 - 💰 **Price display in menu bar** — selected cryptocurrencies are displayed directly in the menu bar
-- 📊 **Binance widget** — detailed information with charts on click
 - ⚙️ **Flexible settings** — choose tickers to display
 - 🔄 **Auto-update** — data updates every 30 seconds
 - 🎨 **Minimalist design** — dark theme, compact interface
