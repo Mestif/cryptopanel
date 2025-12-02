@@ -1,96 +1,100 @@
 # Changelog
 
-## Версия 1.9.0 (2025)
+## Version 1.9.0 (2025)
 
-### Основные изменения
+### Key Changes
 
-1. **Исправлено отображение в "недавно запущенных"**
-   - Изменен `LSUIElement` с `true` на `false` в Info.plist
-   - Добавлен `LSBackgroundOnly` = `false`
-   - Добавлен `NSApp.setActivationPolicy(.accessory)` в AppDelegate
-   - Приложение теперь появляется в "недавно запущенных" приложений
-   - Иконка не отображается в Dock (accessory policy)
+1. **Fixed Recent Apps Display**
+   - Changed `LSUIElement` from `true` to `false` in Info.plist
+   - Added `LSBackgroundOnly` = `false`
+   - Added `NSApp.setActivationPolicy(.accessory)` in AppDelegate
+   - App now appears in "Recent Apps" list
+   - Dock icon remains hidden (accessory policy)
 
-2. **Добавлена поддержка системного языка**
-   - Создан файл `LocalizedStrings.swift` для локализации
-   - Автоматическое определение языка системы
-   - Поддержка русского и английского языков
-   - Все строки интерфейса локализованы:
-     - Заголовки и подписи
-     - Кнопки
-     - Сообщения об ошибках
-     - Окно About
+2. **Added System Language Support**
+   - Created `LocalizedStrings.swift` file for localization
+   - Automatic system language detection
+   - Support for Russian and English languages
+   - All interface strings are localized:
+     - Headers and labels
+     - Buttons
+     - Error messages
+     - About window
 
-### Технические детали
+3. **About Window Updates**
+   - Added download link to GitHub Releases
+   - Added "Open GitHub" button
+   - Clickable download link
 
-- **Info.plist**: `LSUIElement` изменен на `false`, добавлен `LSBackgroundOnly = false`
-- **AppDelegate.swift**: Добавлен `NSApp.setActivationPolicy(.accessory)`
-- **LocalizedStrings.swift**: Новый файл для управления локализацией
-- **SettingsView.swift**: Все строки заменены на локализованные константы
-- **build.sh**: Добавлен LocalizedStrings.swift в сборку
+### Technical Details
 
-### Поддерживаемые языки
+- **Info.plist**: `LSUIElement` changed to `false`, added `LSBackgroundOnly = false`
+- **AppDelegate.swift**: Added `NSApp.setActivationPolicy(.accessory)`
+- **LocalizedStrings.swift**: New file for localization management
+- **SettingsView.swift**: All strings replaced with localized constants
+- **build.sh**: Added LocalizedStrings.swift to build
 
-- **Русский (ru)**: Автоматически определяется, если система на русском
-- **Английский (en)**: Используется по умолчанию и для всех других языков
+### Supported Languages
+
+- **Russian (ru)**: Automatically detected if system is in Russian
+- **English (en)**: Used by default and for all other languages
 
 ---
 
-## Версия 1.0.0 (2024)
+## Version 1.0.0 (2024)
 
-### Основные изменения
+### Key Changes
 
-1. **Создан новый проект CryptoPanel**
-   - Полностью переписанное приложение для macOS
-   - Использует Binance API вместо CoinGecko
-   - Удалены все зависимости от Firebase старого автора
+1. **Created New CryptoPanel Project**
+   - Completely rewritten macOS application
+   - Uses Binance API instead of CoinGecko
+   - Removed all dependencies on Firebase from previous author
 
-2. **Интеграция Binance API**
-   - Прямое получение данных с биржи Binance
+2. **Binance API Integration**
+   - Direct data fetching from Binance exchange
    - Endpoint: `https://api.binance.com/api/v3/ticker/24hr`
-   - Отображение топ-50 криптовалют по объему торгов
+   - Display of top 50 cryptocurrencies by trading volume
 
-3. **Обновление данных автора**
-   - Bundle Identifier: `com.mestif.cryptopanel` (было: `com.yonilevy.cryptoticker`)
-   - Автор: Mestif (Mestif@gmail.com)
-   - Удалены все ссылки на старого автора (yonilevy)
+3. **Author Information Update**
+   - Bundle Identifier: `com.mestif.cryptopanel` (was: `com.yonilevy.cryptoticker`)
+   - Author: Mestif (Mestif@gmail.com)
+   - Removed all references to previous author (yonilevy)
 
-4. **Удаление старой конфигурации**
-   - Удалена Firebase конфигурация (`GoogleService-Info.plist`)
-   - Удалены зависимости от Firebase
-   - Упрощена архитектура приложения
+4. **Removed Old Configuration**
+   - Removed Firebase configuration (`GoogleService-Info.plist`)
+   - Removed Firebase dependencies
+   - Simplified application architecture
 
-5. **Новый интерфейс**
-   - Меню бар приложение (LSUIElement)
-   - SwiftUI для отображения данных
-   - Автоматическое обновление данных
-   - Отображение цены, изменения за 24ч, объема торгов
+5. **New Interface**
+   - Menu bar application (LSUIElement)
+   - SwiftUI for data display
+   - Automatic data updates
+   - Display of price, 24h change, trading volume
 
-### Технические детали
+### Technical Details
 
-- **Платформа:** macOS 12.0+
-- **Язык:** Swift 5.9+
+- **Platform:** macOS 12.0+
+- **Language:** Swift 5.9+
 - **UI Framework:** SwiftUI + AppKit
-- **API:** Binance Public API (без аутентификации)
+- **API:** Binance Public API (no authentication required)
 
-### Файлы проекта
+### Project Files
 
-- `AppDelegate.swift` - Главный делегат приложения
-- `BinanceAPI.swift` - Клиент для работы с Binance API
-- `CryptoModel.swift` - Модели данных криптовалют
-- `ContentView.swift` - SwiftUI интерфейс
-- `main.swift` - Точка входа приложения
-- `Info.plist` - Конфигурация приложения
+- `AppDelegate.swift` - Main application delegate
+- `BinanceAPI.swift` - Binance API client
+- `CryptoModel.swift` - Cryptocurrency data models
+- `ContentView.swift` - SwiftUI interface
+- `main.swift` - Application entry point
+- `Info.plist` - Application configuration
 
-### Миграция с старого приложения
+### Migration from Previous Application
 
-Старое приложение использовало:
+Previous application used:
 - CoinGecko API
-- Firebase для аналитики
+- Firebase for analytics
 - Bundle ID: `com.yonilevy.cryptoticker`
 
-Новое приложение использует:
-- Binance API напрямую
-- Без внешних зависимостей (кроме системных)
+New application uses:
+- Binance API directly
+- No external dependencies (except system frameworks)
 - Bundle ID: `com.mestif.cryptopanel`
-
