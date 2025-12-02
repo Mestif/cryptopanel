@@ -80,5 +80,13 @@ struct LocalizedStrings {
     static var aboutCopyright: String {
         return isRussian ? "© 2025 Все права защищены." : "© 2025 All rights reserved."
     }
+    
+    static var aboutDownload: String {
+        return isRussian ? "Скачать DMG:" : "Download DMG:"
+    }
+    
+    static var aboutDownloadLink: String {
+        return "https://github.com/Mestif/cryptopanel/releases/latest"
+    }
 }
 
