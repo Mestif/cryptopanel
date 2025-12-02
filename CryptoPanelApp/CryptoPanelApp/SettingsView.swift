@@ -160,7 +160,7 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 20) {
             // Заголовок
-            Text("Настройки тикеров")
+            Text(LocalizedStrings.settingsTitle)
                 .font(.headline)
                 .fontWeight(.bold)
                 .padding(.top)
@@ -169,12 +169,12 @@ struct SettingsView: View {
             
             // Поле для ввода нового тикера
             VStack(alignment: .leading, spacing: 8) {
-                Text("Добавить тикер вручную (только SPOT):")
+                Text(LocalizedStrings.addTickerManually)
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
                 HStack {
-                    CustomTextField(text: $newTickerInput, placeholder: "Введите тикер (например: LINK)")
+                    CustomTextField(text: $newTickerInput, placeholder: LocalizedStrings.enterTicker)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onSubmit {
                             addCustomTicker()
@@ -198,7 +198,7 @@ struct SettingsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
                     // Основные тикеры (BTC, ETH, SOL)
-                    Text("Основные тикеры:")
+                    Text(LocalizedStrings.coreTickers)
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.horizontal)
@@ -227,7 +227,7 @@ struct SettingsView: View {
                         Divider()
                             .padding(.vertical, 8)
                         
-                        Text("Пользовательские тикеры:")
+                        Text(LocalizedStrings.customTickers)
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .padding(.horizontal)
@@ -268,13 +268,13 @@ struct SettingsView: View {
             
             // Кнопки
             VStack(spacing: 12) {
-                Button(action: {
-                    NSApplication.shared.terminate(nil)
-                }) {
-                    HStack {
-                        Image(systemName: "power")
-                        Text("QUIT APP")
-                    }
+                    Button(action: {
+                        NSApplication.shared.terminate(nil)
+                    }) {
+                        HStack {
+                            Image(systemName: "power")
+                            Text(LocalizedStrings.quitApp)
+                        }
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.red.opacity(0.1))
@@ -283,13 +283,13 @@ struct SettingsView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 
-                Button(action: {
-                    showAbout()
-                }) {
-                    HStack {
-                        Image(systemName: "info.circle")
-                        Text("ABOUT")
-                    }
+                    Button(action: {
+                        showAbout()
+                    }) {
+                        HStack {
+                            Image(systemName: "info.circle")
+                            Text(LocalizedStrings.about)
+                        }
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.blue.opacity(0.1))
@@ -312,13 +312,13 @@ struct SettingsView: View {
         // Проверяем, что тикер содержит только буквы и цифры
         let allowedCharacters = CharacterSet.alphanumerics
         guard ticker.unicodeScalars.allSatisfy({ allowedCharacters.contains($0) }) else {
-            showError("Тикер может содержать только буквы и цифры")
+            showError(LocalizedStrings.tickerAlphanumericOnly())
             return
         }
         
         // Проверяем ограничение на максимум 5 тикеров в панели
         if settings.selectedTickers.count >= 5 && !settings.selectedTickers.contains(ticker) {
-            showError("Максимум 5 тикеров можно добавить в панель. Снимите галочку с одного из тикеров.")
+            showError(LocalizedStrings.maxTickersReached())
             return
         }
         
@@ -328,7 +328,7 @@ struct SettingsView: View {
     
     private func showError(_ message: String) {
         let alert = NSAlert()
-        alert.messageText = "Ошибка"
+        alert.messageText = LocalizedStrings.error
         alert.informativeText = message
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK")
@@ -337,7 +337,7 @@ struct SettingsView: View {
     
     private func showAbout() {
         let alert = NSAlert()
-        alert.messageText = "CryptoPanel"
+        alert.messageText = LocalizedStrings.aboutTitle
         
         // Загружаем иконку приложения
         // Сначала пробуем из Resources
@@ -354,15 +354,14 @@ struct SettingsView: View {
         }
         
         alert.informativeText = """
-        Версия: 1.0.0
+        \(LocalizedStrings.aboutVersion)
         
-        Приложение для отслеживания криптовалют
-        с использованием Binance API.
+        \(LocalizedStrings.aboutDescription)
         
-        Автор: Mestif
-        Email: Mestif@gmail.com
+        \(LocalizedStrings.aboutAuthor)
+        \(LocalizedStrings.aboutEmail)
         
-        © 2025 Все права защищены.
+        \(LocalizedStrings.aboutCopyright)
         """
         alert.alertStyle = .informational
         alert.addButton(withTitle: "OK")

@@ -36,6 +36,7 @@ swiftc \
     CryptoPanelApp/ContentView.swift \
     CryptoPanelApp/StatusBarManager.swift \
     CryptoPanelApp/BinanceWidgetView.swift \
+    CryptoPanelApp/LocalizedStrings.swift \
     CryptoPanelApp/SettingsView.swift
 
 if [ $? -ne 0 ]; then

@@ -9,6 +9,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarManager = StatusBarManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Скрываем иконку из Dock, но оставляем в недавно запущенных
+        NSApp.setActivationPolicy(.accessory)
+        
         // Создаем статус бар
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         

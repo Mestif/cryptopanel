@@ -19,15 +19,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.9.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>9</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.finance</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>12.0</string>
 	<key>LSUIElement</key>
-	<true/>
+	<false/>
+	<key>LSBackgroundOnly</key>
+	<false/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2025 Mestif (Mestif@gmail.com). All rights reserved.</string>
 	<key>NSPrincipalClass</key>
