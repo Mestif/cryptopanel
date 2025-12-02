@@ -36,7 +36,7 @@ BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX и другие (через
 
 ### Вариант 1: Готовое приложение (рекомендуется)
 
-1. Перейдите в раздел [Releases](https://github.com/YOUR_USERNAME/cryptopanel/releases)
+1. Перейдите в раздел [Releases](https://github.com/Mestif/cryptopanel/releases)
 2. Скачайте последнюю версию `CryptoPanelApp.dmg` или `CryptoPanelApp.zip`
 3. Откройте скачанный файл и перетащите приложение в папку Applications
 4. Запустите приложение из Applications
@@ -45,7 +45,7 @@ BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX и другие (через
 
 ```bash
 # Клонируйте репозиторий
-git clone https://github.com/YOUR_USERNAME/cryptopanel.git
+git clone https://github.com/Mestif/cryptopanel.git
 cd cryptopanel/CryptoPanelApp
 
 # Запустите скрипт сборки
@@ -182,7 +182,7 @@ chmod +x create_dmg.sh
 
 ## 🤝 Вклад
 
-В настоящее время проект не принимает внешние вклады. Если у вас есть предложения или вы нашли ошибку, пожалуйста, создайте [Issue](https://github.com/YOUR_USERNAME/cryptopanel/issues).
+В настоящее время проект не принимает внешние вклады. Если у вас есть предложения или вы нашли ошибку, пожалуйста, создайте [Issue](https://github.com/Mestif/cryptopanel/issues).
 
 ---
 
@@ -207,7 +207,7 @@ Copyright © 2024 Mestif (Mestif@gmail.com). All rights reserved.
 
 Если у вас возникли проблемы:
 
-1. Проверьте [Issues](https://github.com/YOUR_USERNAME/cryptopanel/issues)
+1. Проверьте [Issues](https://github.com/Mestif/cryptopanel/issues)
 2. Убедитесь, что у вас macOS 12.0 или выше
 3. Проверьте интернет-соединение
 4. Создайте новый Issue с описанием проблемы
