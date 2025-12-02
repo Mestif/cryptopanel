@@ -136,7 +136,8 @@ cryptopanel/
 
 ## 📸 Скриншоты
 
-_Добавьте скриншоты приложения здесь_
+<img width="841" height="145" alt="CleanShot 2025-12-02 at 04 34 31" src="https://github.com/user-attachments/assets/5e8fb0c3-3656-453b-8bd7-73478cbf1dd3" />
+
 
 ---
 
