@@ -77,6 +77,46 @@ class BinanceAPI {
         }.resume()
     }
     
+    /// Получить данные 24hr ticker для символа (включая изменение цены)
+    func getTicker24hr(symbol: String, completion: @escaping (Result<BinanceTicker, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/ticker/24hr?symbol=\(symbol)") else {
+            completion(.failure(BinanceAPIError.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            // Проверяем HTTP статус код
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 400 {
+                    completion(.failure(BinanceAPIError.symbolNotFound))
+                    return
+                }
+            }
+            
+            guard let data = data else {
+                completion(.failure(BinanceAPIError.noData))
+                return
+            }
+            
+            do {
+                let ticker = try JSONDecoder().decode(BinanceTicker.self, from: data)
+                completion(.success(ticker))
+            } catch {
+                if let jsonString = String(data: data, encoding: .utf8),
+                   jsonString.contains("\"code\":-1121") || jsonString.contains("Invalid symbol") {
+                    completion(.failure(BinanceAPIError.symbolNotFound))
+                } else {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+    
     /// Получить список всех доступных символов
     func getExchangeInfo(completion: @escaping (Result<BinanceExchangeInfo, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/exchangeInfo") else {
