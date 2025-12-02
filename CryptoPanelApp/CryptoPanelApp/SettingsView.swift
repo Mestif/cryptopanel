@@ -362,47 +362,13 @@ struct SettingsView: View {
         \(LocalizedStrings.aboutAuthor)
         \(LocalizedStrings.aboutEmail)
         
-        \(LocalizedStrings.aboutDownload)
-        \(LocalizedStrings.aboutDownloadLink)
-        
         \(LocalizedStrings.aboutCopyright)
         """
         
-        // Создаем NSTextView с кликабельной ссылкой
-        let textView = NSTextView(frame: NSRect(x: 0, y: 0, width: 400, height: 100))
-        textView.isEditable = false
-        textView.isSelectable = true
-        textView.backgroundColor = .clear
-        
-        // Создаем NSAttributedString с кликабельной ссылкой
-        let attributedString = NSMutableAttributedString(string: infoText)
-        let linkRange = (infoText as NSString).range(of: LocalizedStrings.aboutDownloadLink)
-        if linkRange.location != NSNotFound {
-            attributedString.addAttribute(.link, value: LocalizedStrings.aboutDownloadLink, range: linkRange)
-            attributedString.addAttribute(.foregroundColor, value: NSColor.linkColor, range: linkRange)
-            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: linkRange)
-        }
-        
-        textView.textStorage?.setAttributedString(attributedString)
-        textView.textContainer?.containerSize = NSSize(width: 400, height: CGFloat.greatestFiniteMagnitude)
-        textView.textContainer?.widthTracksTextView = true
-        textView.textContainer?.heightTracksTextView = false
-        textView.sizeToFit()
-        
-        alert.informativeText = ""
-        alert.accessoryView = textView
-        
+        alert.informativeText = infoText
         alert.alertStyle = .informational
         alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: LocalizedStrings.isRussian ? "Открыть GitHub" : "Open GitHub")
-        
-        let response = alert.runModal()
-        if response == .alertSecondButtonReturn {
-            // Открываем ссылку в браузере
-            if let url = URL(string: LocalizedStrings.aboutDownloadLink) {
-                NSWorkspace.shared.open(url)
-            }
-        }
+        alert.runModal()
     }
 }
 
