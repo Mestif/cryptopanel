@@ -17,7 +17,7 @@ struct BinanceWidgetView: View {
             }
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.vertical, 2)
         .fixedSize(horizontal: true, vertical: false)
         .onAppear {
             widgetDataManager.startUpdating()
@@ -49,7 +49,6 @@ struct TickerView: View {
                 .foregroundColor(change >= 0 ? Color.green : Color.red)
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 8)
     }
 }
 
@@ -159,7 +158,6 @@ struct BinanceWidgetContentView: View {
                     userInfo: ["width": width]
                 )
             }
-            .frame(height: 100)
             .padding(0)
     }
 }

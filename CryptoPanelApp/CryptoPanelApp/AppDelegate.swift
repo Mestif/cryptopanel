@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Создаем popover для виджета Binance (бегущая строка)
         widgetPopover = NSPopover()
         // Начальный размер, будет обновляться при открытии
-        widgetPopover?.contentSize = NSSize(width: 600, height: 100)
+        widgetPopover?.contentSize = NSSize(width: 600, height: 30)
         widgetPopover?.behavior = .transient
         
         let widgetView = BinanceWidgetContentView()
@@ -96,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let tickerCount = SettingsManager.shared.selectedTickers.count
                 // Примерная ширина: ~200px на тикер + отступы
                 let estimatedWidth = max(400, min(800, CGFloat(tickerCount) * 200 + 40))
-                popover.contentSize = NSSize(width: estimatedWidth, height: 100)
+                popover.contentSize = NSSize(width: estimatedWidth, height: 30)
                 
                 if let button = statusItem?.button {
                     popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
@@ -148,7 +148,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func widgetWidthChanged(_ notification: Notification) {
         if let width = notification.userInfo?["width"] as? CGFloat,
            let popover = widgetPopover, popover.isShown {
-            popover.contentSize = NSSize(width: width, height: 100)
+            popover.contentSize = NSSize(width: width, height: 30)
         }
     }
     
