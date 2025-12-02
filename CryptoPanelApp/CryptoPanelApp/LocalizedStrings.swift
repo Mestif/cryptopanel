@@ -74,7 +74,7 @@ struct LocalizedStrings {
     }
     
     static var aboutEmail: String {
-        return "Email: Mestif@gmail.com"
+        return "Email: Mestifd@gmail.com"
     }
     
     static var aboutCopyright: String {
