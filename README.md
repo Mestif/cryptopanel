@@ -31,32 +31,11 @@ BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX and others (via Binance API
 
 ## 📥 Download
 
-### Option 1: Ready-to-use application (recommended)
-
 1. Go to [Releases](https://github.com/Mestif/cryptopanel/releases)
 2. Download the latest version `CryptoPanelApp.dmg` or `CryptoPanelApp.zip`
 3. Open the downloaded file and drag the application to the Applications folder
 4. Launch the application from Applications
 
-### Option 2: Build from source
-
-```bash
-# Clone the repository
-git clone https://github.com/Mestif/cryptopanel.git
-cd cryptopanel/CryptoPanelApp
-
-# Run the build script
-chmod +x build.sh
-./build.sh
-
-# Launch the application
-open build/CryptoPanelApp.app
-```
-
-**Build requirements:**
-- macOS 12.0 or higher
-- Xcode 14.0 or higher
-- Swift 5.9 or higher
 
 ---
 
@@ -104,24 +83,6 @@ The widget displays:
 - **API:** Binance Public API (no authentication required)
 - **Platform:** macOS 12.0+ (arm64)
 
-### Project Structure
-
-```
-cryptopanel/
-├── CryptoPanelApp/          # Main application
-│   ├── CryptoPanelApp/      # Source code
-│   │   ├── AppDelegate.swift
-│   │   ├── BinanceAPI.swift
-│   │   ├── StatusBarManager.swift
-│   │   ├── ContentView.swift
-│   │   ├── BinanceWidgetView.swift
-│   │   ├── SettingsView.swift
-│   │   └── CryptoModel.swift
-│   ├── build.sh             # Build script
-│   ├── Info.plist          # Application configuration
-│   └── README.md           # Documentation
-└── README.md               # This file
-```
 
 ### API Endpoints
 
@@ -132,34 +93,9 @@ The application uses Binance Public API:
 ---
 
 ## 📸 Screenshots
+<img width="291" height="29" alt="CleanShot 2025-12-02 at 05 13 19" src="https://github.com/user-attachments/assets/49c262de-d785-4c00-a7eb-1b5e5447b597" />
+<img width="824" height="144" alt="CleanShot 2025-12-02 at 05 14 05" src="https://github.com/user-attachments/assets/d21c336c-9c56-4550-bb93-7b94774fdbc7" />
 
-<img width="841" height="145" alt="CleanShot 2025-12-02 at 04 34 31" src="https://github.com/user-attachments/assets/5e8fb0c3-3656-453b-8bd7-73478cbf1dd3" />
-
----
-
-## 🔧 Development
-
-### Building the Project
-
-```bash
-cd CryptoPanelApp
-./build.sh
-```
-
-### Creating DMG for Distribution
-
-```bash
-cd CryptoPanelApp
-chmod +x create_dmg.sh
-./create_dmg.sh
-```
-
-### Development Requirements
-
-- macOS 12.0+
-- Xcode 14.0+
-- Swift 5.9+
-- Internet connection for API testing
 
 ---
 
@@ -169,7 +105,7 @@ See [CHANGELOG.md](CryptoPanelApp/CHANGELOG.md) for full version history.
 
 ### Recent Updates
 
-- **v1.8** — Latest version (see [UPDATE_v1.8.md](CryptoPanelApp/UPDATE_v1.8.md))
+- **v1.9** — Latest version 
 - **v1.7** — Performance improvements
 - **v1.6** — New widget features
 - **v1.5** — Interface updates
