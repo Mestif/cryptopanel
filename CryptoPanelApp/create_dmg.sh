@@ -7,7 +7,7 @@ set -e
 PROJECT_NAME="CryptoPanelApp"
 APP_NAME="CryptoPanelApp.app"
 DMG_NAME="CryptoPanel"
-VERSION="1.0.0"
+VERSION="1.9.0"
 BUILD_DIR="build"
 DMG_DIR="dmg_build"
 DMG_FILE="${DMG_NAME}_v${VERSION}.dmg"

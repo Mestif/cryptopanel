@@ -11,6 +11,10 @@ build/
 *.app
 *.dSYM
 
+# DMG files
+*.dmg
+*.dmg.temp.dmg
+
 # macOS
 .DS_Store
 .AppleDouble

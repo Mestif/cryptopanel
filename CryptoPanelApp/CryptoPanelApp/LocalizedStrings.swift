@@ -60,7 +60,7 @@ struct LocalizedStrings {
     }
     
     static var aboutVersion: String {
-        return isRussian ? "Версия: 1.0.0" : "Version: 1.0.0"
+        return isRussian ? "Версия: 1.9.0" : "Version: 1.9.0"
     }
     
     static var aboutDescription: String {
