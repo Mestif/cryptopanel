@@ -5,112 +5,111 @@
 ![macOS](https://img.shields.io/badge/macOS-12.0+-blue.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)
 
-
-**Приложение для отслеживания криптовалют в меню баре macOS**
+**Cryptocurrency tracking app for macOS menu bar**
 
 </div>
 
 ---
 
-## 📋 Описание
+## 📋 Description
 
-CryptoPanel — это нативное macOS приложение, которое отображает актуальные цены криптовалют прямо в меню баре. Приложение получает данные напрямую с биржи Binance и автоматически обновляет информацию каждые 30 секунд.
+CryptoPanel is a native macOS application that displays real-time cryptocurrency prices directly in the menu bar. The app fetches data directly from the Binance exchange and automatically updates information every 30 seconds.
 
-### ✨ Основные возможности
+### ✨ Key Features
 
-- 💰 **Отображение цен в меню баре** — выбранные криптовалюты отображаются прямо в строке меню
-- 📊 **Виджет Binance** — детальная информация с графиками по клику
-- ⚙️ **Гибкие настройки** — выбор тикеров для отображения
-- 🔄 **Автообновление** — данные обновляются каждые 30 секунд
-- 🎨 **Минималистичный дизайн** — темная тема, компактный интерфейс
+- 💰 **Price display in menu bar** — selected cryptocurrencies are displayed directly in the menu bar
+- 📊 **Binance widget** — detailed information with charts on click
+- ⚙️ **Flexible settings** — choose tickers to display
+- 🔄 **Auto-update** — data updates every 30 seconds
+- 🎨 **Minimalist design** — dark theme, compact interface
 
-### 🎯 Поддерживаемые криптовалюты
+### 🎯 Supported Cryptocurrencies
 
-BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX и другие (через Binance API)
+BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX and others (via Binance API)
 
 ---
 
-## 📥 Скачать
+## 📥 Download
 
-### Вариант 1: Готовое приложение (рекомендуется)
+### Option 1: Ready-to-use application (recommended)
 
-1. Перейдите в раздел [Releases](https://github.com/Mestif/cryptopanel/releases)
-2. Скачайте последнюю версию `CryptoPanelApp.dmg` или `CryptoPanelApp.zip`
-3. Откройте скачанный файл и перетащите приложение в папку Applications
-4. Запустите приложение из Applications
+1. Go to [Releases](https://github.com/Mestif/cryptopanel/releases)
+2. Download the latest version `CryptoPanelApp.dmg` or `CryptoPanelApp.zip`
+3. Open the downloaded file and drag the application to the Applications folder
+4. Launch the application from Applications
 
-### Вариант 2: Сборка из исходников
+### Option 2: Build from source
 
 ```bash
-# Клонируйте репозиторий
+# Clone the repository
 git clone https://github.com/Mestif/cryptopanel.git
 cd cryptopanel/CryptoPanelApp
 
-# Запустите скрипт сборки
+# Run the build script
 chmod +x build.sh
 ./build.sh
 
-# Запустите приложение
+# Launch the application
 open build/CryptoPanelApp.app
 ```
 
-**Требования для сборки:**
-- macOS 12.0 или выше
-- Xcode 14.0 или выше
-- Swift 5.9 или выше
+**Build requirements:**
+- macOS 12.0 or higher
+- Xcode 14.0 or higher
+- Swift 5.9 or higher
 
 ---
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-1. **Запустите приложение** — оно появится в меню баре (правый верхний угол)
-2. **Левый клик** на цены → открыть виджет Binance с детальной информацией
-3. **Правый клик** на цены → открыть настройки и выбрать тикеры
-4. Настройки сохраняются автоматически
-
----
-
-## 📖 Документация
-
-### Управление приложением
-
-- **Левый клик** — открыть/закрыть виджет Binance
-- **Правый клик** — открыть меню настроек
-- **QUIT APP** — выход из приложения
-- **ABOUT** — информация о версии и авторе
-
-### Настройка тикеров
-
-1. Правый клик на цены в меню баре
-2. Выберите тикеры для отображения (минимум один)
-3. Изменения применяются сразу
-4. Настройки сохраняются автоматически
-
-### Виджет Binance
-
-Виджет показывает:
-- Текущую цену
-- Изменение за 24 часа (%)
-- График цены
-- Объем торгов
+1. **Launch the application** — it will appear in the menu bar (top right corner)
+2. **Left click** on prices → open Binance widget with detailed information
+3. **Right click** on prices → open settings and select tickers
+4. Settings are saved automatically
 
 ---
 
-## 🛠 Технические детали
+## 📖 Documentation
 
-### Архитектура
+### Application Controls
 
-- **Язык:** Swift 5.9+
+- **Left click** — open/close Binance widget
+- **Right click** — open settings menu
+- **QUIT APP** — exit the application
+- **ABOUT** — version and author information
+
+### Ticker Configuration
+
+1. Right click on prices in the menu bar
+2. Select tickers to display (at least one required)
+3. Changes are applied immediately
+4. Settings are saved automatically
+
+### Binance Widget
+
+The widget displays:
+- Current price
+- 24-hour change (%)
+- Price chart
+- Trading volume
+
+---
+
+## 🛠 Technical Details
+
+### Architecture
+
+- **Language:** Swift 5.9+
 - **UI Framework:** SwiftUI + AppKit
-- **API:** Binance Public API (без аутентификации)
-- **Платформа:** macOS 12.0+ (arm64)
+- **API:** Binance Public API (no authentication required)
+- **Platform:** macOS 12.0+ (arm64)
 
-### Структура проекта
+### Project Structure
 
 ```
 cryptopanel/
-├── CryptoPanelApp/          # Основное приложение
-│   ├── CryptoPanelApp/      # Исходный код
+├── CryptoPanelApp/          # Main application
+│   ├── CryptoPanelApp/      # Source code
 │   │   ├── AppDelegate.swift
 │   │   ├── BinanceAPI.swift
 │   │   ├── StatusBarManager.swift
@@ -118,37 +117,36 @@ cryptopanel/
 │   │   ├── BinanceWidgetView.swift
 │   │   ├── SettingsView.swift
 │   │   └── CryptoModel.swift
-│   ├── build.sh             # Скрипт сборки
-│   ├── Info.plist          # Конфигурация приложения
-│   └── README.md           # Документация
-└── README.md               # Этот файл
+│   ├── build.sh             # Build script
+│   ├── Info.plist          # Application configuration
+│   └── README.md           # Documentation
+└── README.md               # This file
 ```
 
 ### API Endpoints
 
-Приложение использует публичный API Binance:
+The application uses Binance Public API:
 - **Endpoint:** `https://api.binance.com/api/v3/ticker/24hr`
-- **Документация:** [Binance API Docs](https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics)
+- **Documentation:** [Binance API Docs](https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics)
 
 ---
 
-## 📸 Скриншоты
+## 📸 Screenshots
 
 <img width="841" height="145" alt="CleanShot 2025-12-02 at 04 34 31" src="https://github.com/user-attachments/assets/5e8fb0c3-3656-453b-8bd7-73478cbf1dd3" />
 
-
 ---
 
-## 🔧 Разработка
+## 🔧 Development
 
-### Сборка проекта
+### Building the Project
 
 ```bash
 cd CryptoPanelApp
 ./build.sh
 ```
 
-### Создание DMG для распространения
+### Creating DMG for Distribution
 
 ```bash
 cd CryptoPanelApp
@@ -156,51 +154,48 @@ chmod +x create_dmg.sh
 ./create_dmg.sh
 ```
 
-### Требования для разработки
+### Development Requirements
 
 - macOS 12.0+
 - Xcode 14.0+
 - Swift 5.9+
-- Интернет-соединение для тестирования API
+- Internet connection for API testing
 
 ---
 
-## 📝 История изменений
+## 📝 Changelog
 
-См. [CHANGELOG.md](CryptoPanelApp/CHANGELOG.md) для полной истории версий.
+See [CHANGELOG.md](CryptoPanelApp/CHANGELOG.md) for full version history.
 
-### Последние обновления
+### Recent Updates
 
-- **v1.8** — Последняя версия (см. [UPDATE_v1.8.md](CryptoPanelApp/UPDATE_v1.8.md))
-- **v1.7** — Улучшения производительности
-- **v1.6** — Новые функции виджета
-- **v1.5** — Обновление интерфейса
-
+- **v1.8** — Latest version (see [UPDATE_v1.8.md](CryptoPanelApp/UPDATE_v1.8.md))
+- **v1.7** — Performance improvements
+- **v1.6** — New widget features
+- **v1.5** — Interface updates
 
 ---
 
-## 👤 Автор
+## 👤 Author
 
 **Mestif**
 
 - Email: Mestif@gmail.com
 - Bundle ID: com.mestif.cryptopanel
 
-
 ---
 
-## ⭐ Благодарности
+## ⭐ Acknowledgments
 
-- [Binance](https://www.binance.com/) за предоставление публичного API
-- Сообщество Swift за отличные инструменты разработки
+- [Binance](https://www.binance.com/) for providing the public API
+- Swift community for excellent development tools
 
 ---
 
 <div align="center">
 
-**Сделано с ❤️ для macOS**
+**Made with ❤️ for macOS**
 
-⭐ Если проект вам понравился, поставьте звезду!
+⭐ If you liked this project, give it a star!
 
 </div>
-
