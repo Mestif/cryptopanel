@@ -45,9 +45,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
         
+        // Слушаем изменения размера виджета
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(widgetWidthChanged(_:)),
+            name: NSNotification.Name("WidgetContentWidthChanged"),
+            object: nil
+        )
+        
         // Создаем popover для виджета Binance (бегущая строка)
         widgetPopover = NSPopover()
-        widgetPopover?.contentSize = NSSize(width: 800, height: 100)
+        // Начальный размер, будет обновляться при открытии
+        widgetPopover?.contentSize = NSSize(width: 600, height: 100)
         widgetPopover?.behavior = .transient
         
         let widgetView = BinanceWidgetContentView()
@@ -82,6 +91,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 // Закрываем настройки если открыты
                 settingsPopover?.performClose(sender)
+                
+                // Вычисляем размер на основе количества тикеров
+                let tickerCount = SettingsManager.shared.selectedTickers.count
+                // Примерная ширина: ~200px на тикер + отступы
+                let estimatedWidth = max(400, min(800, CGFloat(tickerCount) * 200 + 40))
+                popover.contentSize = NSSize(width: estimatedWidth, height: 100)
                 
                 if let button = statusItem?.button {
                     popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
@@ -128,6 +143,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarManager.stopUpdating()
         statusBarManager.startUpdating()
         updateStatusBarText()
+    }
+    
+    @objc func widgetWidthChanged(_ notification: Notification) {
+        if let width = notification.userInfo?["width"] as? CGFloat,
+           let popover = widgetPopover, popover.isShown {
+            popover.contentSize = NSSize(width: width, height: 100)
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

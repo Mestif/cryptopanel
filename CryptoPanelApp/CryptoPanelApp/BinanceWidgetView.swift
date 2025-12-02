@@ -7,21 +7,19 @@ struct BinanceWidgetView: View {
     @StateObject private var widgetDataManager = WidgetDataManager()
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 40) {
-                    ForEach(Array(settingsManager.selectedTickers).sorted(), id: \.self) { ticker in
-                        TickerView(
-                            ticker: ticker,
-                            price: widgetDataManager.prices[ticker]?.price ?? "--",
-                            change: widgetDataManager.prices[ticker]?.changePercent ?? 0.0
-                        )
-                    }
-                }
-                .padding(.horizontal, 20)
+        HStack(spacing: 40) {
+            ForEach(Array(settingsManager.selectedTickers).sorted(), id: \.self) { ticker in
+                TickerView(
+                    ticker: ticker,
+                    price: widgetDataManager.prices[ticker]?.price ?? "--",
+                    change: widgetDataManager.prices[ticker]?.changePercent ?? 0.0
+                )
             }
-            .background(Color(red: 0.1, green: 0.1, blue: 0.1))
         }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+        .background(Color(red: 0.1, green: 0.1, blue: 0.1))
+        .fixedSize(horizontal: false, vertical: true)
         .onAppear {
             widgetDataManager.startUpdating()
         }
@@ -147,7 +145,29 @@ class WidgetDataManager: ObservableObject {
 struct BinanceWidgetContentView: View {
     var body: some View {
         BinanceWidgetView()
-            .frame(width: 800, height: 100)
+            .fixedSize(horizontal: true, vertical: false)
+            .background(
+                GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: ContentWidthPreferenceKey.self, value: geometry.size.width)
+                }
+            )
+            .onPreferenceChange(ContentWidthPreferenceKey.self) { width in
+                // Отправляем уведомление для обновления размера popover
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("WidgetContentWidthChanged"),
+                    object: nil,
+                    userInfo: ["width": width]
+                )
+            }
+            .frame(height: 100)
             .padding(0)
+    }
+}
+
+struct ContentWidthPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 600
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
