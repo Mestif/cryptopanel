@@ -1,0 +1,36 @@
+# Xcode
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# Build
+build/
+*.app
+*.dSYM
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Temporary files
+*.swp
+*~.nib
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
