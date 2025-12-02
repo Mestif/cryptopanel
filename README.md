@@ -102,7 +102,8 @@ The application uses Binance Public API:
 
 ## 📸 Screenshots
 
-<img width="824" height="144" alt="CleanShot 2025-12-02 at 05 14 05" src="https://github.com/user-attachments/assets/d21c336c-9c56-4550-bb93-7b94774fdbc7" />
+<img width="681" height="64" alt="CleanShot 2025-12-02 at 06 46 18" src="https://github.com/user-attachments/assets/5c3ab398-34c4-4992-9d8a-8732c1c5140b" />
+
 
 
 ---
