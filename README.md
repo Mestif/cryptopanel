@@ -4,7 +4,7 @@
 
 ![macOS](https://img.shields.io/badge/macOS-12.0+-blue.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)
-![License](https://img.shields.io/badge/License-Proprietary-red.svg)
+
 
 **Приложение для отслеживания криптовалют в меню баре macOS**
 
