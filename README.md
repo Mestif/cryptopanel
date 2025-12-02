@@ -34,7 +34,15 @@ BTC, ETH, SOL, BNB, ADA, XRP, DOGE, DOT, MATIC, AVAX and others (via Binance API
 1. Go to [Releases](https://github.com/Mestif/cryptopanel/releases)
 2. Download the latest version `CryptoPanelApp.dmg` or `CryptoPanelApp.zip`
 3. Open the downloaded file and drag the application to the Applications folder
-4. Launch the application from Applications
+4. **Important:** If macOS says the app is damaged, you need to allow it:
+   - Right-click on `CryptoPanelApp.app` in Applications folder
+   - Select "Open" from the context menu
+   - Click "Open" in the security dialog
+   - Alternatively, run this command in Terminal:
+     ```bash
+     xattr -cr /Applications/CryptoPanelApp.app
+     ```
+5. Launch the application from Applications
 
 
 ---

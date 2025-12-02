@@ -29,6 +29,10 @@ mkdir -p "$DMG_DIR"
 echo "📋 Копирую приложение..."
 cp -R "$BUILD_DIR/$APP_NAME" "$DMG_DIR/"
 
+# Удаляем quarantine атрибут для обхода Gatekeeper
+echo "🔓 Удаляю quarantine атрибут..."
+xattr -cr "$DMG_DIR/$APP_NAME" 2>/dev/null || true
+
 # Создаем символическую ссылку на Applications
 echo "🔗 Создаю ссылку на Applications..."
 ln -s /Applications "$DMG_DIR/Applications"
