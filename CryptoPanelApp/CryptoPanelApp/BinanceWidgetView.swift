@@ -18,8 +18,7 @@ struct BinanceWidgetView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .background(Color(red: 0.1, green: 0.1, blue: 0.1))
-        .fixedSize(horizontal: false, vertical: true)
+        .fixedSize(horizontal: true, vertical: false)
         .onAppear {
             widgetDataManager.startUpdating()
         }
