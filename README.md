@@ -1,4 +1,4 @@
-# 🚀 CryptoPanel
+# 🚀 CryptoPanel <img width="291" height="29" alt="CleanShot 2025-12-02 at 05 13 19" src="https://github.com/user-attachments/assets/49c262de-d785-4c00-a7eb-1b5e5447b597" />
 
 <div align="center">
 
@@ -93,7 +93,7 @@ The application uses Binance Public API:
 ---
 
 ## 📸 Screenshots
-<img width="291" height="29" alt="CleanShot 2025-12-02 at 05 13 19" src="https://github.com/user-attachments/assets/49c262de-d785-4c00-a7eb-1b5e5447b597" />
+
 <img width="824" height="144" alt="CleanShot 2025-12-02 at 05 14 05" src="https://github.com/user-attachments/assets/d21c336c-9c56-4550-bb93-7b94774fdbc7" />
 
 
@@ -116,8 +116,7 @@ See [CHANGELOG.md](CryptoPanelApp/CHANGELOG.md) for full version history.
 
 **Mestif**
 
-- Email: Mestif@gmail.com
-- Bundle ID: com.mestif.cryptopanel
+- Email: Mestifd@gmail.com
 
 ---
 
